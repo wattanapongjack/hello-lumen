@@ -35,3 +35,5 @@ $router->get('/response', function (Illuminate\Http\Request $request) {
     return (new Illuminate\Http\Response('Hello stranger', 200))
         ->header('Content-Type', 'text/plain');
 });
+
+$router->get('/books', 'BooksController@index');
