@@ -37,4 +37,8 @@ $router->get('/response', function (Illuminate\Http\Request $request) {
 });
 
 $router->get('/books', 'BooksController@index');
-$router->get('/books/{id:[\d]+}', 'BooksController@show');
+$router->get('/books/{id:[\d]+}', [
+    'as' => 'books.show',
+    'uses' => 'BooksController@show'
+]);
+$router->post('/books', 'BooksController@store');
