@@ -20,7 +20,7 @@ class BooksController
 
     public function index()
     {
-        return Book::all();
+        return ['data' => Book::all()->toArray()];
     }
 
     /**
@@ -30,7 +30,7 @@ class BooksController
     */
     public function show($id)
     {
-        return Book::findOrFail($id);
+        return ['data' => Book::findOrFail($id)->toArray()];
     }
 
     /**
@@ -42,7 +42,7 @@ class BooksController
     {
         $book = Book::create($request->all());
 
-        return response()->json(['created' => true], 201, [
+        return response()->json(['data' => $book->toArray()], 201, [
             'Location' => route('books.show', ['id' => $book->id])
         ]);
     }
@@ -69,7 +69,7 @@ class BooksController
         $book->fill($request->all());
         $book->save();
 
-        return $book;
+        return ['data' => $book->toArray()];
     }
 
     /**
